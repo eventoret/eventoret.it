@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eventoret · Il meglio di Torino ogni venerdì</title>
+<meta name="description" content="Il meglio di Torino scelto per te. Si legge in 3 minuti. Ogni venerdì alle 7:30.">
+<style>
+  body { margin: 0; background: #F2EFE8; color: #183F2E; font: 18px/1.5 Arial, Helvetica, sans-serif; }
+  main { max-width: 32rem; margin: 0 auto; padding: 3rem 1rem; }
+  img { width: 220px; max-width: 100%; height: auto; }
+  h1 { font-family: Georgia, serif; font-size: 2rem; line-height: 1.2; margin: 2rem 0 .5rem; }
+  a { color: #183F2E; font-weight: bold; }
+  form { margin-top: 2rem; padding-top: 1.5rem; border-top: 4px solid #DDA137; }
+  label { display: block; margin: 1rem 0; }
+  input[type=email], select { display: block; box-sizing: border-box; width: 100%; margin-top: .25rem; padding: .6rem; font: inherit; color: inherit; background: #fff; border: 2px solid #183F2E; border-radius: 4px; }
+  .casella { display: flex; gap: .6rem; align-items: flex-start; font-size: 1rem; }
+  .casella input { width: 1.2rem; height: 1.2rem; margin: .2rem 0 0; flex: none; accent-color: #183F2E; }
+  small { font-size: 1rem; font-weight: normal; }
+  button { width: 100%; margin-top: .5rem; padding: .8rem; font: bold 1.1rem Arial, Helvetica, sans-serif; color: #F2EFE8; background: #183F2E; border: 0; border-radius: 4px; cursor: pointer; }
+  button:hover, button:focus-visible { background: #0f2a1e; outline: 3px solid #DDA137; }
+</style>
+</head>
+<body>
+<main>
+  <img src="/wordmark.png" alt="Eventoret">
+  <h1>Il meglio di Torino scelto per te.</h1>
+  <p>Si legge in 3 minuti. Arriva <strong>ogni venerdì alle 7:30</strong>.</p>
+
+  <!-- Form "Landing eventoret.it" su Kit, senza lo script di Kit: niente cookie. -->
+  <form action="https://app.kit.com/forms/10076686/subscriptions" method="post">
+    <label>La tua email
+      <input type="email" name="email_address" required autocomplete="email">
+    </label>
+
+    <!-- Senza name: il browser le rende obbligatorie, a Kit non arrivano. -->
+    <label class="casella"><input type="checkbox" required> <span>Ho almeno 18 anni.</span></label>
+    <label class="casella"><input type="checkbox" required> <span>Voglio ricevere Eventoret ogni venerdì. Il Numero può contenere sponsor e link affiliati; misuriamo aperture e click. <a href="/privacy">Informativa privacy</a></span></label>
+
+    <label>Come hai scoperto Eventoret? <small>(facoltativo)</small>
+      <select name="fields[come]">
+        <option value="">—</option>
+        <option value="amico">Un amico me l'ha consigliato / inoltrato</option>
+        <option value="community">Una community o un gruppo</option>
+        <option value="instagram">Instagram</option>
+        <option value="google">Google</option>
+        <option value="altro">Altro</option>
+      </select>
+    </label>
+
+    <input type="hidden" name="fields[fonte]">
+
+    <button type="submit">Iscriviti</button>
+  </form>
+</main>
+
+<script>
+  // Niente cookie: legge solo utm_source dall'URL.
+  const utm = new URLSearchParams(location.search).get('utm_source') || '';
+  const form = document.forms[0];
+  form['fields[fonte]'].value = utm;
+  const come = form['fields[come]'];
+  if ([...come.options].some(o => o.value === utm.toLowerCase())) come.value = utm.toLowerCase();
+</script>
+</body>
+</html>
