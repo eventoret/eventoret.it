@@ -46,6 +46,7 @@
     background: var(--giallo); border: 0; border-radius: 6px; cursor: pointer; transition: background .15s;
   }
   button:hover { background: #e8b55a; }
+  .consenso { margin: 1.5rem 0 0; font-size: .9rem; opacity: .85; }
   .nota { margin: .9rem 0 0; font-size: .9rem; opacity: .8; text-align: center; }
 
   @media (min-width: 900px) {
@@ -74,9 +75,8 @@
         <input type="email" name="email_address" required autocomplete="email">
       </label>
 
-      <!-- Senza name: il browser le rende obbligatorie, a Kit non arrivano. -->
+      <!-- Senza name: il browser la rende obbligatoria, a Kit non arriva. -->
       <label class="casella"><input type="checkbox" required> <span>Ho almeno 18 anni.</span></label>
-      <label class="casella"><input type="checkbox" required> <span>Voglio ricevere Eventoret ogni venerdì. Il Numero può contenere sponsor e link affiliati; misuriamo aperture e click. <a href="/privacy">Informativa privacy</a></span></label>
 
       <label>Come hai scoperto Eventoret? <small>(facoltativo)</small>
         <select name="fields[come]">
@@ -91,6 +91,8 @@
 
       <input type="hidden" name="fields[fonte]">
 
+      <!-- Il consenso è il clic su Iscriviti più la conferma via email: niente seconda casella. -->
+      <p class="consenso">Iscrivendoti ricevi Eventoret ogni venerdì. <a href="/privacy">Informativa privacy</a></p>
       <button type="submit">Iscriviti</button>
       <p class="nota">Ti mando un'email per confermare l'iscrizione.</p>
     </form>
